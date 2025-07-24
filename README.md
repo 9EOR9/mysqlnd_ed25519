@@ -18,7 +18,7 @@ PHP currently connects to MariaDB servers using `mysql_native_password`, which r
 
 - PHP 8.1 or newer with `mysqlnd`.
 - `libsodium` development libraries.
-- MariaDB server configured with `ed25519` authentication plugin.
+- MariaDB server configured with `ed25519` authentication plugin. (version 10.4.3 or newer)
 
 ## Installation
 
