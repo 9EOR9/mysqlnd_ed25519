@@ -1,0 +1,12 @@
+ARG_WITH("mysqlnd_ed25519", "with Mariadb ed25519 authentication support for mysqlnd", "no");
+
+if (PHP_MYSQLND_ED25519 != "no") {
+    if (CHECK_LIB("libsodium.lib", "sodium", PHP_SODIUM) && CHECK_HEADER_ADD_INCLUDE("sodium.h", "CFLAGS_SODIUM")) {
+
+        EXTENSION("mysqlnd_ed25519", "php_mysqlnd_ed25519.c", true)
+        ADD_EXTENSION_DEP('mysqlnd_ed25519', 'mysqlnd');
+        ADD_EXTENSION_DEP('mysqlnd_ed25519', 'sodium');
+    } else {
+        WARNING("libsodium not found");
+    }
+}

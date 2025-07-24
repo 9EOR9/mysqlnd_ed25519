@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0">
+ <name>mysqlnd_ed25519</name>
+ <channel>pecl.php.net</channel>
+ <summary>MariaDB Authentication Plugin for PHP</summary>
+ <description>
+ The mysqlnd_mariadb_auth extension provides an Ed25519-based authentication plugin for PHP’s mysqlnd driver, allowing secure authentication with MariaDB servers using modern cryptography via libsodium. This improves connection security by replacing the SHA-1-based mysql_native_password authentication with Ed25519 public-key signatures.
+ </description>
+ <lead>
+  <name>Georg Richter</name>
+  <user>yourhandle</user>
+  <email>georg@mariadb.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2025-07-17</date>
+ <time>12:00:00</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="https://www.php.net/license/3_01.txt">PHP License 3.01</license>
+ <notes>
+ Initial beta release of MariaDB ed25519 authentication plugin for mysqlnd.
+ </notes>
+ <contents>
+  <dir name="/">
+   <file role="src" name="config.m4"/>
+   <file role="src" name="config.w32"/>
+   <file role="src" name="php_mysqlnd_ed25519.c"/>
+   <file role="src" name="php_mysqlnd_ed25519.h"/>
+   <file role="doc" name="LICENSE"/>
+   <file role="doc" name="README.md"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>8.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.10.1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <providesextension>mysqlnd_ed25519</providesextension>
+ <extsrcrelease/>
+</package>
