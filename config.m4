@@ -1,15 +1,15 @@
 PHP_ARG_ENABLE(mysqlnd_ed25519, whether to enable ed25519 authentication for mysqlnd, [ --enable-mysqlnd_ed25519 Enable MariaDB ed25519 authentication plugin for mysqlnd ])
 
 if test "$PHP_MYSQLND_ED25519" != "no"; then
-  dnl Check for libsodium library
-  AC_CHECK_HEADER(sodium.h, [have_sodium_h=yes], [have_sodium_h=no])
-  AC_CHECK_LIB(sodium, sodium_init, [have_sodium_lib=yes], [have_sodium_lib=no])
+  PKG_PROG_PKG_CONFIG
 
-  if test "$have_sodium_lib" = "no" || test "$have_sodium_h" = "no"; then
-    AC_MSG_ERROR([libsodium library and headers not found. Please install libsodium development files.])
-  fi
+  dnl Check for libsodium
+  PKG_CHECK_MODULES([LIBSODIUM], [libsodium], [], [
+    AC_MSG_ERROR([libsodium development files not found. Please install libsodium development files.])
+  ])
 
-  PHP_ADD_LIBRARY(sodium, 1, MYSQLND_ED25519_SHARED_LIBADD)
+  PHP_EVAL_INCLINE($LIBSODIUM_CFLAGS)
+  PHP_EVAL_LIBLINE($LIBSODIUM_LIBS, MYSQLND_ED25519_SHARED_LIBADD)
 
   PHP_ADD_EXTENSION_DEP(mysqlnd_ed25519, mysqlnd, true)
   PHP_ADD_EXTENSION_DEP(mysqlnd_ed25519, sodium, true)
