@@ -23,7 +23,6 @@
 #include "ext/mysqlnd/mysqlnd.h"
 #include "ext/mysqlnd/mysqlnd_auth.h"
 #include "ext/mysqlnd/mysqlnd_plugin.h"
-#include "php.h"
 #include "php_ini.h"
 #include "php_mysqlnd_ed25519.h"
 #include <sodium.h>
@@ -108,18 +107,18 @@ static zend_uchar* mariadb_ed25519_auth(struct st_mysqlnd_authentication_plugin*
 	zend_uchar* ret = NULL;
 
 	if (auth_plugin_data_len != NONCE_LENGTH)
-	return NULL;
+		return NULL;
 
 	if (passwd && passwd_len) {
-	ret = calloc(SHA512_LENGTH + 1, 1);
+		ret = calloc(SHA512_LENGTH + 1, 1);
 
-	if (!(ma_crypto_sign(ret, auth_plugin_data, auth_plugin_data_len, passwd, passwd_len))) {
-		*auth_data_len = SHA512_LENGTH;
-		ret[SHA512_LENGTH] = 0;
-	} else {
-		free(ret);
-		ret = NULL;
-	}
+		if (!(ma_crypto_sign(ret, auth_plugin_data, auth_plugin_data_len, passwd, passwd_len))) {
+			*auth_data_len = SHA512_LENGTH;
+			ret[SHA512_LENGTH] = 0;
+		} else {
+			free(ret);
+			ret = NULL;
+		}
 	}
 	return ret;
 }
@@ -141,8 +140,7 @@ static struct st_mysqlnd_authentication_plugin mariadb_ed25519_auth_plugin = {
 
 PHP_MINIT_FUNCTION(mysqlnd_mariadb_auth)
 {
-	if (mysqlnd_plugin_register_ex((struct st_mysqlnd_plugin_header*)&mariadb_ed25519_auth_plugin) == FAIL)
-	{
+	if (mysqlnd_plugin_register_ex((struct st_mysqlnd_plugin_header*)&mariadb_ed25519_auth_plugin) == FAIL) {
 	  php_error_docref(NULL, E_WARNING, "mysqlnd_plugin_register_ex failed");
 	  return FAILURE;
 	}
