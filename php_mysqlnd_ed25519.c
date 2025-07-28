@@ -138,7 +138,7 @@ static struct st_mysqlnd_authentication_plugin mariadb_ed25519_auth_plugin = {
 	NULL
 };
 
-PHP_MINIT_FUNCTION(mysqlnd_mariadb_auth)
+PHP_MINIT_FUNCTION(mysqlnd_ed25519)
 {
 	if (mysqlnd_plugin_register_ex((struct st_mysqlnd_plugin_header*)&mariadb_ed25519_auth_plugin) == FAIL) {
 	  php_error_docref(NULL, E_WARNING, "mysqlnd_plugin_register_ex failed");
@@ -147,17 +147,17 @@ PHP_MINIT_FUNCTION(mysqlnd_mariadb_auth)
 	return SUCCESS;
 }
 
-PHP_MSHUTDOWN_FUNCTION(mysqlnd_mariadb_auth)
+PHP_MSHUTDOWN_FUNCTION(mysqlnd_ed25519)
 {
 	return SUCCESS;
 }
 
-zend_module_entry mysqlnd_mariadb_auth_module_entry = {
+zend_module_entry mysqlnd_ed25519_module_entry = {
 	STANDARD_MODULE_HEADER,
-	"mysqlnd_mariadb_auth",
+	"mysqlnd_ed25519",
 	NULL,
-	PHP_MINIT(mysqlnd_mariadb_auth),
-	PHP_MSHUTDOWN(mysqlnd_mariadb_auth),
+	PHP_MINIT(mysqlnd_ed25519),
+	PHP_MSHUTDOWN(mysqlnd_ed25519),
 	NULL,
 	NULL,
 	NULL,
@@ -165,8 +165,8 @@ zend_module_entry mysqlnd_mariadb_auth_module_entry = {
 	STANDARD_MODULE_PROPERTIES
 };
 
-#ifdef COMPILE_DL_MYSQLND_MARIADB_AUTH
-ZEND_GET_MODULE(mysqlnd_mariadb_auth)
+#ifdef COMPILE_DL_MYSQLND_ED25519
+ZEND_GET_MODULE(mysqlnd_ed25519)
 #endif
 
 /* vim: set noexpandtab tabstop=4 shiftwidth=4: */
