@@ -1,28 +1,23 @@
 /*
-  +----------------------------------------------------------------------+
-  | PHP Version 8                                                        |
-  +----------------------------------------------------------------------+
-  | Copyright (c) 1997-2025 The PHP Group                                |
-  +----------------------------------------------------------------------+
-  | This source file is subject to version 3.01 of the PHP license,      |
-  | that is bundled with this package in the file LICENSE, and is        |
-  | available through the world-wide-web at the following url:           |
-  | https://www.php.net/license/3_01.txt                                 |
-  | If you did not receive a copy of the PHP license and are unable to   |
-  | obtain it through the world-wide-web, please send a note to          |
-  | license@php.net so we can mail you a copy immediately.               |
-  +----------------------------------------------------------------------+
-  | Author: Georg Richter <georg@mariadb.com>                            |
-  +----------------------------------------------------------------------+
+   +----------------------------------------------------------------------+
+   | Copyright © The PHP Group and Contributors.                          |
+   +----------------------------------------------------------------------+
+   | This source file is subject to the Modified BSD License that is      |
+   | bundled with this package in the file LICENSE, and is available      |
+   | through the World Wide Web at <https://www.php.net/license/>.        |
+   |                                                                      |
+   | SPDX-License-Identifier: BSD-3-Clause                                |
+   +----------------------------------------------------------------------+
+   | Authors: Georg Richter <georg@mariadb.com>                           |
+   +----------------------------------------------------------------------+
 */
-#ifndef PHP_MARIADB_AUTH_PLUGIN_H
-#define PHP_MARIADB_AUTH_PLUGIN_H
 
-#define PHP_MARIADB_AUTH_PLUGIN_VERSION "0.0.1"
+#ifndef PHP_MARIADB_ED25519_PLUGIN_H
+#define PHP_MARIADB_ED25519_PLUGIN_H
 
-#define NET_HEADER_SIZE 4
+#define PHP_MARIADB_AUTH_PLUGIN_VERSION "0.0.2"
 
-extern zend_module_entry mariadb_auth_plugin_module_entry;
-#define phpext_mariadb_auth_plugin_ptr &mariadb_auth_plugin_module_entry
+extern zend_module_entry mysqlnd_ed25519_plugin_module_entry;
+#define phpext_mysqlnd_ed25519_plugin_ptr &mysqlnd_ed25519_plugin_module_entry
 
 #endif
