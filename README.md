@@ -1,4 +1,4 @@
-# mysqlnd_ed25519
+# mysqlnd_ed25519 plugin
 
 A **mysqlnd authentication plugin** providing **Ed25519-based authentication** for PHP when connecting to MariaDB servers.
 
@@ -24,7 +24,7 @@ PHP currently connects to MariaDB servers using `mysql_native_password`, which r
 
 ```bash
 phpize
-./configure
+./configure --enable-mysqlnd_ed25519
 make
 sudo make install
 
