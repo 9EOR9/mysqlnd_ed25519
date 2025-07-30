@@ -112,7 +112,7 @@ static zend_uchar* mariadb_ed25519_auth(struct st_mysqlnd_authentication_plugin*
 	if (passwd && passwd_len) {
 		ret = calloc(SHA512_LENGTH + 1, 1);
 
-		if (!(ma_crypto_sign(ret, auth_plugin_data, auth_plugin_data_len, passwd, passwd_len))) {
+		if (!(ma_crypto_sign(ret, auth_plugin_data, auth_plugin_data_len, (zend_uchar *)passwd, passwd_len))) {
 			*auth_data_len = SHA512_LENGTH;
 			ret[SHA512_LENGTH] = 0;
 		} else {
@@ -120,12 +120,13 @@ static zend_uchar* mariadb_ed25519_auth(struct st_mysqlnd_authentication_plugin*
 			ret = NULL;
 		}
 	}
+    *auth_data_len= SHA512_LENGTH;
 	return ret;
 }
 
 static struct st_mysqlnd_authentication_plugin mariadb_ed25519_auth_plugin = {
-	{
-		MYSQLND_PLUGIN_API_VERSION,
+	.plugin_header = {
+        MYSQLND_PLUGIN_API_VERSION,
 		"auth_plugin_client_ed25519",
 		PHP_VERSION_ID,
 		PHP_MARIADB_AUTH_PLUGIN_VERSION,
@@ -134,8 +135,10 @@ static struct st_mysqlnd_authentication_plugin mariadb_ed25519_auth_plugin = {
 		{ NULL, NULL },
 		{ NULL },
 	},
-	mariadb_ed25519_auth,
-	NULL
+	.methods = {
+		mariadb_ed25519_auth,
+		NULL
+	}
 };
 
 PHP_MINIT_FUNCTION(mysqlnd_ed25519)
