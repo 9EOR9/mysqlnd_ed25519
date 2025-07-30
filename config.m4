@@ -1,4 +1,5 @@
-PHP_ARG_ENABLE(mysqlnd_ed25519, whether to enable ed25519 authentication for mysqlnd, [ --enable-mysqlnd_ed25519 Enable MariaDB ed25519 authentication plugin for mysqlnd ])
+PHP_ARG_WITH([mysqlnd_ed25519], [for mysqlnd_ed25519 support],
+[  --with-mysqlnd_ed25519    Include mysqlnd_ed25519 support])
 
 if test "$PHP_MYSQLND_ED25519" != "no"; then
   PKG_PROG_PKG_CONFIG

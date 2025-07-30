@@ -9,6 +9,8 @@ $mysqli = new mysqli($host, $user, $passwd, $db, $port, $socket);
 if (!stripos($mysqli->server_info, "MariaDB"))
 	die('skip not a MariaDB server')
 ?>
+--EXTENSIONS--
+mysqlnd mysqlnd_ed25519
 --FILE--
 <?php
 
