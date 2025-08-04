@@ -1,17 +1,17 @@
 {
   "name": "georg/mysqlnd_ed25519",
-  "description": "PECL extension for MySQL native driver ed25519 authentication plugin",
+  "description": "MariaDB ed25519 authentication plugin for mysqlnd",
   "type": "php-ext",
   "license": "BSD-3-Clause",
   "authors": [
     {
       "name": "Georg Richter",
-      "email": "georg@php.net",
+      "email": "holzboote@gmail.com",
       "role": "Maintainer"
     }
   ],
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.1"
   },
   "php-ext": {
       "extension-name": "mysqlnd_ed25519",
@@ -21,7 +21,7 @@
       "configure-options": [
         {
           "name": "with-mysqlnd-ed25519",
-          "description": "Enable MariaDB ed25519 authentication support",
+          "description": "Enable MariaDB ed25519 authentication support for mysqlnd",
           "needs-value": false
         }
       ]
