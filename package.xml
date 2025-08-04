@@ -9,14 +9,14 @@
  <lead>
   <name>Georg Richter</name>
   <user>georgrichter</user>
-  <email>georg@mariadb.com</email>
+  <email>georg@php.net</email>
   <active>yes</active>
  </lead>
  <date>2025-07-17</date>
  <time>12:00:00</time>
  <version>
-  <release>0.1.0</release>
-  <api>0.1.0</api>
+  <release>0.9.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
   <release>beta</release>
